@@ -1,0 +1,28 @@
+RewriteEngine On
+
+
+RewriteRule ^myProfile?$ profile.php
+RewriteRule ^mySchoolDetails?$ schoolDetails.php
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+[^/])$ $1.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+
+# protect .htaccess
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+	Order allow,deny
+	Deny from all
+	Satisfy all
+</Files>
+
+# protect all dot files
+<Files ~ "^.*\.">
+	Order allow,deny
+	Deny from all
+	Satisfy all
+</Files>
+#RewriteRule ^studentDetails/([0-9a-zA-Z]+) studentDetails.php?id=$1 [NC,L]
